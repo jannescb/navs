@@ -1,16 +1,13 @@
 <script>
 export default {
-    name: `TransitionExpand`,
+    name: `TransitionExpandSide`,
     functional: true,
     render(createElement, context) {
         const data = {
             props: {
-                name: `expand`
+                name: `expand-side`,
             },
             on: {
-                afterEnter(element) {
-                    //element.style.width = `auto`;
-                },
                 enter(element) {
                     element.style.width = `auto`;
                     const { width } = getComputedStyle(element);
@@ -28,31 +25,23 @@ export default {
                     requestAnimationFrame(() => {
                         element.style.width = 0;
                     });
-                }
-            }
+                },
+            },
         };
         return createElement(`transition`, data, context.children);
-    }
+    },
 };
 </script>
 
-<style scoped>
-* {
-    will-change: width;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-</style>
-
 <style>
-.expand-enter-active,
-.expand-leave-active {
-    transition: width 5.2s ease-in-out;
+.expand-side-enter-active,
+.expand-side-leave-active {
+    transition: all 0.25s cubic-bezier(0.5, 0.33, 0.25, 1);
     overflow: hidden;
 }
-.expand-enter,
-.expand-leave-to {
+.expand-side-enter,
+.expand-side-leave-to {
+    opacity: 0;
     width: 0;
 }
 </style>
